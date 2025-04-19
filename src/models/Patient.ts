@@ -1,9 +1,13 @@
-import { Entity, Column, OneToOne, JoinColumn } from "typeorm";
+import { Entity, Column, OneToOne, JoinColumn, PrimaryColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity()
 export class Patient {
-  @OneToOne(() => User, (user) => user.patient, { primary: true })
+  // Define userId as the primary key
+  @PrimaryColumn()
+  userId: number;
+
+  @OneToOne(() => User, (user) => user.patient, { cascade: true })
   @JoinColumn({ name: "userId" })
   user: User;
 
