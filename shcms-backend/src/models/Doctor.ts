@@ -9,4 +9,6 @@ export class Doctor extends User {
 
   @OneToMany(() => Appointment, (appointment) => appointment.doctor)
   appointments: Appointment[];
+    department: any;
+    user: any;
 }

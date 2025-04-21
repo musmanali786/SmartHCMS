@@ -25,7 +25,11 @@ export class AppointmentController {
 
       res.status(201).json(appointment);
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      if (error instanceof Error) {
+        res.status(400).json({ error: error.message });
+      } else {
+        res.status(400).json({ error: "An unknown error occurred" });
+      }
     }
   }
 
